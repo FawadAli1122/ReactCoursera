@@ -1,65 +1,59 @@
-import React, {Component} from 'react';
+import React from 'react';
 import { Card, CardImg, CardImgOverlay, CardTitle, CardText } from 'reactstrap';
-import Menu from './MenuComponent';
 
 
 
-export const Renderdish= (selectedDish) =>{
-  if (selectedDish!=null){
-    return(
-      <Card>
-        <CardTitle>{selectedDish.name}</CardTitle>
-          <CardImg src={selectedDish.image} alt={selectedDish.name}/>
-          <CardText >{selectedDish.description}</CardText>
-      </Card>
-    );
-  }
-  else {
-    return (
-      <div></div>
-    );
-  }
-}
 
-export const Rendercomments=(props) =>{
-  if(props != null && props.comments != null) {
-    props.comments.map(review => {
-      return (
-        <div key={review.id}>
+export const Renderdish=({dish}) =>{
+    if (dish!=null)
+      return(
           <Card>
-            <h4>Comments</h4>
-            <ul className="list-unstyled">
-              <li className="list-item">{review.comment}</li>
-              <li className="list-item">{review.author}</li>
-            </ul>
+            <CardImg width="100%" src={dish.image} alt={dish.name}/>
+            <CardImgOverlay >  
+              <CardTitle>{dish.name}</CardTitle>
+            </CardImgOverlay>
+            <CardText >{dish.description}</CardText>
+            
           </Card>
-        </div>
-
       );
-    });
-  }
-
-  else {
-    return (
-      <div></div>
-    );
+  
+    else {
+      return (
+        <div></div>
+      );
   }
 }
 
-  
-    /*return(
+
+
+export const Rendercomments=({dish}) =>{
+  if(dish != null && dish.comments!=null)
+    
+    return (
+      dish.comments.map((review) =>{
+        return(
+          <div key={review.id}>
+              <text>{review.comment}</text>
+              <h2>{review.author}</h2>
+                <p>{review.date}</p>
+          </div>
+    )}))
+    
+  else {
+    return (
       <div>
-      <div >
-        {renderDish()}
+        Dish is Null
       </div>
-      <div >
-        {renderComments()}
-        
-    </div>
-    </div>
-    )*/
- 
+    );
+   }
+  }
   
+
+
+ 
+ 
+
+
 
 
 
