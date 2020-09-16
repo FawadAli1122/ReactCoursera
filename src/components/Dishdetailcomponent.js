@@ -7,14 +7,15 @@ import { Card, CardImg, CardImgOverlay, CardTitle, CardText } from 'reactstrap';
 export const Renderdish=({dish}) =>{
     if (dish!=null)
       return(
-          <Card>
-            <CardImg width="100%" src={dish.image} alt={dish.name}/>
-            <CardImgOverlay >  
-              <CardTitle>{dish.name}</CardTitle>
-            </CardImgOverlay>
-            <CardText >{dish.description}</CardText>
-            
-          </Card>
+              <div className="col-12 col-md-5 m-1">
+                <Card>
+                  <CardImg  src={dish.image} alt={dish.name}/>
+                    <CardImgOverlay >  
+                      <CardTitle>{dish.name}</CardTitle>
+                    </CardImgOverlay>
+                      <CardText >{dish.description}</CardText>
+                </Card>
+              </div> 
       );
   
     else {
@@ -30,14 +31,18 @@ export const Rendercomments=({dish}) =>{
   if(dish != null && dish.comments!=null)
     
     return (
+    
       dish.comments.map((review) =>{
         return(
-          <div key={review.id}>
-              <text>{review.comment}</text>
-              <h2>{review.author}</h2>
-                <p>{review.date}</p>
-          </div>
-    )}))
+           
+              <div>
+              <text >{review.comment}</text>
+              <h3>{review.author}</h3>
+              <p>{new Intl.DateTimeFormat('en-US',{year:'numeric', month:'short', day:'2-digit'}).format(new Date(Date.parse(review.date)))}</p>
+              </div>
+         
+
+    );}))
     
   else {
     return (
