@@ -7,7 +7,7 @@ import { Card, CardImg, CardImgOverlay, CardTitle, CardText } from 'reactstrap';
 export const Renderdish=({dish}) =>{
     if (dish!=null)
       return(
-              <div className="col-12 col-md-5 m-1">
+              <div key={dish.id} className="col-12 col-md-5 m-1">
                 <Card>
                   <CardImg  src={dish.image} alt={dish.name}/>
                     <CardImgOverlay >  
@@ -17,6 +17,7 @@ export const Renderdish=({dish}) =>{
                 </Card>
               </div> 
       );
+      
   
     else {
       return (
@@ -35,8 +36,8 @@ export const Rendercomments=({dish}) =>{
       dish.comments.map((review) =>{
         return(
            
-              <div>
-              <text >{review.comment}</text>
+              <div key={Math.random}>
+              <p >{review.comment}</p>
               <h3>{review.author}</h3>
               <p>{new Intl.DateTimeFormat('en-US',{year:'numeric', month:'short', day:'2-digit'}).format(new Date(Date.parse(review.date)))}</p>
               </div>
